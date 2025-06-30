@@ -52,7 +52,7 @@ public class ListDemo {
 		
 		// Add up the numbers in the again. (Demonstrates iteration using an iterator!)
 		// This does the same thing, but without changing the internal cursor position.
-		int sum=0;
+		sum=0;
 		LinkedIterator280<Integer> iter = l.iterator();
 		iter.goFirst();			
 		while(iter.itemExists()){
