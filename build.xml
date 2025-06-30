@@ -8,13 +8,13 @@
         <delete dir="${build.dir}"/>
     </target>
 
-    <target name="compile">
-        <mkdir dir="${build.dir}"/>
-        <javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false"/>
-        <javac srcdir="." destdir="${build.dir}" includeantruntime="false">
-            <classpath path="${build.dir}"/>
-        </javac>
-    </target>
+<target name="compile">
+     <mkdir dir="${build.dir}"/>
+     <javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false" debug="true"/>
+     <javac srcdir="." destdir="${build.dir}" includeantruntime="false" debug="true">
+         <classpath path="${build.dir}"/>
+     </javac>
+ </target>
 
     <target name="run" depends="compile">
         <java classname="${main.class}" fork="true">
@@ -23,4 +23,6 @@
             </classpath>
         </java>
     </target>
+
+
 </project>
