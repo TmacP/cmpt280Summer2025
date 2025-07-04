@@ -2,7 +2,7 @@
 <project name="ListDemo" default="run" basedir=".">
     <property name="src.dir" value="lib280-asn1/src"/>
     <property name="build.dir" value="build"/>
-    <property name="main.class" value="ListDemo"/>
+    <!-- main.class property is no longer needed, as we will specify main classes per target -->
 
     <target name="clean">
         <delete dir="${build.dir}"/>
@@ -16,8 +16,46 @@
      </javac>
  </target>
 
-    <target name="run" depends="compile">
-        <java classname="${main.class}" fork="true">
+
+    <!-- Run ListDemo -->
+    <target name="run-ListDemo" depends="compile">
+        <java classname="ListDemo" fork="true">
+            <classpath>
+                <pathelement path="${build.dir}"/>
+            </classpath>
+        </java>
+    </target>
+
+    <!-- Run Demo -->
+    <target name="run-Demo" depends="compile">
+        <java classname="Demo" fork="true">
+            <classpath>
+                <pathelement path="${build.dir}"/>
+            </classpath>
+        </java>
+    </target>
+
+    <!-- Run ArrayedList280 -->
+    <target name="run-ArrayedList" depends="compile">
+        <java classname="lib280.list.ArrayedList280" fork="true">
+            <classpath>
+                <pathelement path="${build.dir}"/>
+            </classpath>
+        </java>
+    </target>
+
+    <!-- Run ArrayedListIterator280 -->
+    <target name="run-ArrayedListIterator" depends="compile">
+        <java classname="lib280.list.ArrayedListIterator280" fork="true">
+            <classpath>
+                <pathelement path="${build.dir}"/>
+            </classpath>
+        </java>
+    </target>
+
+    <!-- Run BilinkedList280 -->
+    <target name="run-BilinkedList" depends="compile">
+        <java classname="lib280.list.BilinkedList280" fork="true">
             <classpath>
                 <pathelement path="${build.dir}"/>
             </classpath>
