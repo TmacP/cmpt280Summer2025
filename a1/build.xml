@@ -2,7 +2,6 @@
 <project name="a1" default="run" basedir=".">
     <property name="src.dir" value="lib280-asn1/src"/>
     <property name="build.dir" value="build"/>
-    <!-- main.class property is no longer needed, as we will specify main classes per target -->
 
     <target name="clean">
         <delete dir="${build.dir}"/>
