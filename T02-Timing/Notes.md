@@ -68,6 +68,25 @@ Algorithm arrayMax(A, n)
 
 ## 4  Active‑Operation Counting — `arrayMax` (Slide 5)
 
+```java
+int arrayMax(int[] A, int n) {
+    int currentMax = A[0];  // executed once (constant)
+    int i = 1;              // executed once (constant)
+
+    while (i < n) {         // <-- Active Operation (loop-condition check)
+        // The active operation (i < n) runs exactly n times:
+        // once for each element (1 to n-1) and once when condition fails.
+
+        if (currentMax < A[i])  // comparison: constant per iteration
+            currentMax = A[i];  // assignment: at most once per iteration (constant)
+
+        i++;                    // increment: constant per iteration
+    }
+
+    return currentMax;      // executed once (constant)
+}
+```
+
 1. **Pick one operation**: loop‑condition `i < n`.
 2. **Count its frequency**: *n* times.
 3. **All other work** constant per pass.
@@ -75,22 +94,56 @@ Algorithm arrayMax(A, n)
 
 ---
 
-## 5  Linear Loops (Slide 6)
+## 5 Linear Loops (Slide 6)
+
+Linear loops occur whenever the loop index increments or decrements by a constant amount on each iteration. Here's the detailed Java code from slide 6:
+
+### Example 1: Standard Increment Loop
 
 ```java
-for(i = 0; i < n; i++) {
-  // O(1) work
+// Simple counting loops are Linear Loops:
+for(int i = 0; i < n; i++) {
+    // statements executed are O(1)
+    // executed exactly n times
 }
 ```
 
-Loops incrementing by ±1 (or constant): **Θ(n)**.
+**Explanation:**  
+- The loop runs exactly **n** times, incrementing `i` by **1** each iteration.
+- Since the body of the loop has constant complexity (**O(1)**), the total complexity is:
+\[
+T(n) = c \cdot n \quad\Rightarrow\quad T(n) \in \Theta(n)
+\]
+
+---
+
+### Example 2: Standard While Loop
+
+```java
+int i = 0;
+while(i < n) {
+    // statements executed are O(1)
+    i++;  // increment is constant per iteration
+}
+```
+
+**Explanation:**  
+- This loop behaves identically to the previous for-loop.
+- Executed exactly **n** times; total complexity remains:
+\[
+T(n) = c \cdot n \quad\Rightarrow\quad T(n) \in \Theta(n)
+\]
+
+---
+
+**Final Complexity (Both examples):** **Θ(n)**
 
 ---
 
 ## 6  Logarithmic Loops (Slides 7–9)
 
 ```java
-for(i = 1; i < n; i *= 2) {
+for(i = 1; i < n; i = i* 2) {
   // O(1) work
 }
 ```
