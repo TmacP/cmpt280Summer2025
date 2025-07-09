@@ -1,4 +1,4 @@
-
+[200~
 # CMPT 280 Tutorial: Timing Analysis
 
 ## 1  Introduction to Growth Functions
@@ -52,7 +52,7 @@ Algorithm arrayMax(A, n)
 
 | Phase               | Count       |
 | ------------------- | ----------- |
-| Setup lines 5–6     | 2           |
+| Setup lines         | 2           |
 | Loop test           | 1 × n       |
 | `if` test           | 1 × (n−1)   |
 | Possible assignment | 0–1 × (n−1) |
@@ -110,10 +110,6 @@ for(int i = 0; i < n; i++) {
 
 **Explanation:**  
 - The loop runs exactly **n** times, incrementing `i` by **1** each iteration.
-- Since the body of the loop has constant complexity (**O(1)**), the total complexity is:
-\[
-T(n) = c \cdot n \quad\Rightarrow\quad T(n) \in \Theta(n)
-\]
 
 ---
 
@@ -129,10 +125,7 @@ while(i < n) {
 
 **Explanation:**  
 - This loop behaves identically to the previous for-loop.
-- Executed exactly **n** times; total complexity remains:
-\[
-T(n) = c \cdot n \quad\Rightarrow\quad T(n) \in \Theta(n)
-\]
+- Executed exactly **n** times
 
 ---
 
@@ -147,7 +140,11 @@ for(i = 1; i < n; i = i* 2) {
   // O(1) work
 }
 ```
-
+```java
+for(i = n; i >= 1; i = i/2) {
+  // O(1) work
+}
+```
 Iterations: ⌈log₂ n⌉ → **Θ(log n)**.
 
 ---
@@ -236,4 +233,3 @@ An **asymptote** is a curve that another curve approaches arbitrarily closely as
 
 > In algorithm analysis we say *T(n) is ****asymptotically**** f(n)* if the ratio T(n)/f(n) tends to a constant when n becomes very large.
 ---
-
