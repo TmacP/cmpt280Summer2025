@@ -1,4 +1,3 @@
-[200~
 # CMPT 280 Tutorial: Timing Analysis
 
 ## 1  Introduction to Growth Functions
