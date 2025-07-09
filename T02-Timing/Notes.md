@@ -214,22 +214,3 @@ return -1;
 Complexity: **Θ(log n)**.
 
 ---
-
-## 10  Statement Counting vs Active‑Operation Counting
-
-| Aspect                                               | Statement Counting                                          | Active‑Op Counting                                                                                     |
-| ---------------------------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| **What you do**                                      | Tally *every* primitive step.                               | Pick **one** operation repeated proportional to the work; multiply by a constant.                      |
-| **Precision**                                        | Gives an *exact* linear formula (reveals constant factors). | Only provides order of growth (hides constants).                                                       |
-| **Effort**                                           | Tedious for long code; error‑prone.                         | Quick; ideal under test‑time pressure.                                                                 |
-| **When to use**                                      | • Profiling small‑n performance.                            |                                                                                                        |
-| • Hardware‑level tuning.                             | • Proving Θ‑class on exams.                                 |                                                                                                        |
-| • Large, nested code where constants are irrelevant. |                                                             |                                                                                                        |
-| **Danger points**                                    | Must assume each primitive really is O(1).                  | Must ensure loop body truly is **O(1)** per pass; if it calls an O(n) sub‑routine, the shortcut fails. |
-
-## 11  Asymptotic Definitions
-
-An **asymptote** is a curve that another curve approaches arbitrarily closely as *n → ∞*.
-
-> In algorithm analysis we say *T(n) is ****asymptotically**** f(n)* if the ratio T(n)/f(n) tends to a constant when n becomes very large.
----
