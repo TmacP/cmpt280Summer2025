@@ -98,15 +98,15 @@ Before we analyze, here is a quick reminder of what each notation means:
 
 - **Worst Case (Big-O):**  
   In the worst case, every character in the string is a lowercase letter, so the body of the `if` statement executes every time. The loop runs for every character in the string, and all operations inside the loop are constant-time. Therefore, the worst-case time complexity is  
-  $$O(n)$$
+$$O(n)$$
 
 - **Best Case (Big-Ω):**  
   In the best case, none of the characters are lowercase (so the `if` body never executes). However, the loop still iterates over every character, performing the `if` check each time. Thus, even in the best case, the time taken is proportional to the length of the string:
-  $$\Omega(n)$$
+$$\Omega(n)$$
 
 - **Overall Time Complexity (Big-Θ):**  
   Since both the best-case and worst-case time complexities grow linearly with \( n \), the overall time complexity is tightly bounded (both above and below) by a linear function. Thus, the overall time complexity of the method is  
-  $$\Theta(n)$$
+$$\Theta(n)$$
 
 **Summary:**
 - Worst case: $O(n)$
@@ -123,9 +123,7 @@ Solution: No, because the loop is already O(n) in the worst case so adding an ad
 is 2O(n) which is just O(n). Similarly for the best case, the cost would become 2Ω(n) which is just
 Ω ( n ).
 
-Page 2
-
-# Question 5
+# Question 5
 
 Determine the exact number of statements executed by the following method in the best- and worst-cases.
 
@@ -173,7 +171,7 @@ Let h = matrix height, w = matrix width.
 
 ### Final Calculation:
 **Total statements = Statements outside loops + Outer loop cost**
-$$ 4 + (2hw + 2h + 1) = 2hw + 2h + 5 $$
+$$4 + (2hw + 2h + 1) = 2hw + 2h + 5$$
 
 ---
 
@@ -267,7 +265,7 @@ $$= (n-1)n + 6n + 1 = n^2 - n + 6n + 1 = n^2 + 5n + 1$$
 
 ### Final Calculation:
 **Total statements (worst case) = Statements outside loops + Outer loop cost**
-$$ 3 + (n^2 + 5n + 1) = n^2 + 5n + 4 $$
+$$3 + (n^2 + 5n + 1) = n^2 + 5n + 4$$
 
 **Summary:**
 - **Best case:** 2 statements
@@ -355,10 +353,10 @@ $$2^{r-1} < n \le 2^r$$
 ### Step 3: Solve for r
 
 Taking the base-2 logarithm of all parts:
-$$ r-1 < \log_2 n \leq r $$
+$$r-1 < \log_2 n \leq r$$
 
 Since r must be an integer (number of iterations), the unique solution is:
-$$ r = \lceil \log_2 n \rceil $$
+$$r = \lceil \log_2 n \rceil$$
 
 **Verification:**
 - **Lower bound:** ⌈log₂ n⌉ - 1 < log₂ n ✓ (ceiling function increases by less than 1)
@@ -552,7 +550,7 @@ public String treeConcat(Node root) {
 **Loop control statements:** 1 statement × (n-1) executions = (n-1)
 
 **Total statements:**
-$$ 3(n-1) + (n-1) = 3n - 3 + n - 1 = 4n - 4 $$
+$$3(n-1) + (n-1) = 3n - 3 + n - 1 = 4n - 4$$
 
 **Answer: 4n - 4 statements**
 
