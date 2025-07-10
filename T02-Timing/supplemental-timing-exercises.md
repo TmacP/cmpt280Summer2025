@@ -410,14 +410,16 @@ Page 5
 
 Determine the time complexity of the following pseudocode snippet using the **active operation approach**.
 
-```
-1  Let A be a 2D array of size n by n.
-2  Let T be an AVL tree with m items.
-3
-4  for each row r of A:
-5      for each column c of A:
-6          A[r][c] = A[r-1][c] + A[r][c-1] - A[r-1][c-1]
-7          T.insert(A[r][c])
+```java
+Let A be a 2D array of size n by n;
+Let T be an AVL tree with m items;
+
+for (int r = 0; r < n; r++) {
+    for (int c = 0; c < n; c++) {
+        A[r][c] = A[r-1][c] + A[r][c-1] - A[r-1][c-1];
+        T.insert(A[r][c]);
+    }
+}
 ```
 
 ## Solution
@@ -458,14 +460,15 @@ Since Line 7 has **non-constant cost** while Lines 5 and 6 are constant-time, **
 
 Determine the time complexity of the following pseudocode snippet using the active operation approach (**careful! This one is tricky!**).
 
-```
-1  Let G be a weighted graph implemented with an adjacency list
-2      with |V| nodes and |E| edges.
-3  Let H be a heap of edges ordered by edge weight (initially empty).
-4
-5  for each vertex v in G:
-6      if there is an edge from vertex v to vertex 0:
-7          insert the edge (v,0) to H
+```java
+Let G be a weighted graph implemented with an adjacency list;
+Let H be a heap of edges ordered by edge weight (initially empty);
+
+for (Vertex v : G.vertices()) {
+    if (G.hasEdge(v, 0)) {
+        H.insert(new Edge(v, 0));
+    }
+}
 ```
 
 ## Solution
@@ -516,20 +519,18 @@ Since O(|V|²) > O(|V| log |V|), **Line 6 dominates** and becomes the active ope
 
 Determine exact number of statements executed by the following pseudocode function in the worst case (**this one is a bit tricky too!**):
 
-```
-1  Algorithm treeconcat(root)
-2
-3  Let root be the root node of an m-ary tree containing n nodes where each
-4      node contains a string and each non-leaf node has exactly m children.
-5  Let s be the empty string.
-6
-7  s ← root.string()         // assign the string stored in root to s
-8
-9  if root is not a leaf node:    // Assume this line is O(1)
-10     for each child q of root:
-11         s ← s + treeconcat(q)  // string concatenation of s with the
-12                                // return value, assume concatenation is O(1)
-13 return s
+```java
+public String treeConcat(Node root) {
+    String s = root.string();
+
+    if (!root.isLeaf()) {
+        for (Node child : root.children()) {
+            s += treeConcat(child);
+        }
+    }
+
+    return s;
+}
 ```
 
 ## Solution
@@ -543,21 +544,21 @@ Determine exact number of statements executed by the following pseudocode functi
 ### Statement Counting Analysis
 
 **Per recursive call, we execute:**
-- Line 7: 1 statement (string assignment)
-- Line 9: 1 statement (leaf node check)  
-- Line 13: 1 statement (return)
+- Line 1: 1 statement (string assignment)
+- Line 2: 1 statement (leaf node check)  
+- Line 6: 1 statement (return)
 - **Subtotal:** 3 statements per call
 
 **For non-leaf nodes, we also execute:**
-- Line 10: 1 statement per child (loop control)
-- Line 11: 1 statement per child (concatenation + assignment)
+- Line 3: 1 statement per child (loop control)
+- Line 4: 1 statement per child (concatenation + assignment)
 
 ### Execution Frequency Analysis
 
 **Recursive calls:** Every node except the root requires a recursive call.
 - **Total recursive calls:** n - 1
 
-**Loop executions (Line 10):** The loop executes once for each child of each non-leaf node.
+**Loop executions (Line 3):** The loop executes once for each child of each non-leaf node.
 - Since each internal node has exactly m children, and we have (n-1) total calls...
 - But we need to count loop executions across ALL recursive calls
 - **Total loop executions:** n - 1 (once per recursive call, since each call handles one child)
