@@ -42,15 +42,15 @@ The key insight is that adding another linear operation to an already linear alg
  ```
 
  **Solution**  
- Worst case is when the `if`-statement is always true. Let \( n = s.length() \). Beginning with the inner loop:
+ Worst case is when the `if`-statement is always true. Let $n = s.length()$. Beginning with the inner loop:
 
- - Number of statements in one loop iteration: 3
- - Number of loop iterations: \( n \)
- - Total for the loop (including +1 when the loop condition is false): \( 3n + 1 \)
+- Number of statements in one loop iteration: 3
+- Number of loop iterations: $n$
+- Total for the loop (including +1 when the loop condition is false): $3n + 1$
 
- Total number of statements is the cost of the loop plus statements outside the loop:
+Total number of statements is the cost of the loop plus statements outside the loop:
 
- \[ 1 + (3n + 1) + 1 = 3n + 3 \]
+$$1 + (3n + 1) + 1 = 3n + 3$$
 
 
 
@@ -92,38 +92,28 @@ Express the worst and best case time complexities of the method in question 1 in
 
 Before we analyze, here is a quick reminder of what each notation means:
 
-- **Big-O (O)**: An upper bound on the growth rate of a function. It describes the *worst-case* scenario—how quickly the running time can grow as the input size increases.
-- **Big-Omega (Ω)**: A lower bound on the growth rate. It describes the *best-case* scenario—the minimum time the algorithm will take as the input size increases.
-- **Big-Theta (Θ)**: A tight bound. It means the function grows at the same rate in both the best and worst cases; the running time is always proportional to this rate.
+- **Big-O (O):** An upper bound on the growth rate of a function. It describes the *worst-case* scenario—how quickly the running time can grow as the input size increases.
+- **Big-Omega (Ω):** A lower bound on the growth rate. It describes the *best-case* scenario—the minimum time the algorithm will take as the input size increases.
+- **Big-Theta (Θ):** A tight bound. It means the function grows at the same rate in both the best and worst cases; the running time is always proportional to this rate.
 
 ---
 
 - **Worst Case (Big-O):**  
   In the worst case, every character in the string is a lowercase letter, so the body of the `if` statement executes every time. The loop runs for every character in the string, and all operations inside the loop are constant-time. Therefore, the worst-case time complexity is  
-  \[
-  O(n)
-  \]
-  where \( n \) is the length of the input string.
+  $$O(n)$$
 
 - **Best Case (Big-Ω):**  
-  In the best case, none of the characters are lowercase (so the `if` body never executes). However, the loop still iterates over every character, performing the `if` check each time. Thus, even in the best case, the time taken is proportional to the length of the string:  
-  \[
-  \Omega(n)
-  \]
+  In the best case, none of the characters are lowercase (so the `if` body never executes). However, the loop still iterates over every character, performing the `if` check each time. Thus, even in the best case, the time taken is proportional to the length of the string:
+  $$\Omega(n)$$
 
 - **Overall Time Complexity (Big-Θ):**  
   Since both the best-case and worst-case time complexities grow linearly with \( n \), the overall time complexity is tightly bounded (both above and below) by a linear function. Thus, the overall time complexity of the method is  
-  \[
-  \Theta(n)
-  \]
-  where \( n \) is the length of the input string.
-
----
+  $$\Theta(n)$$
 
 **Summary:**
-- Worst case: \( O(n) \)
-- Best case: \( \Omega(n) \)
-- Overall: \( \Theta(n) \)
+- Worst case: $O(n)$
+- Best case: $\Omega(n)$
+- Overall: $\Theta(n)$
 
 
 
@@ -269,19 +259,13 @@ Let n = s.length (assuming square matrix when applicable).
 **This is a dependent-quadratic loop** since the inner loop iterations depend on the outer loop variable i.
 
 **Total outer loop cost:**
-The outer loop runs for i = 0, 1, 2, ..., n-1, so we sum:
+The outer loop runs for $i = 0, 1, \dots, n-1$, so we sum:
 
-\[
-\sum_{i=0}^{n-1}(2i + 6) + 1 = \sum_{i=0}^{n-1}2i + \sum_{i=0}^{n-1}6 + 1
-\]
+$$\sum_{i=0}^{n-1}(2i + 6) + 1 = \sum_{i=0}^{n-1}2i + \sum_{i=0}^{n-1}6 + 1$$
 
-\[
-= 2\sum_{i=0}^{n-1}i + 6n + 1 = 2 \cdot \frac{(n-1)n}{2} + 6n + 1
-\]
+$$= 2\sum_{i=0}^{n-1}i + 6n + 1 = 2 \cdot \frac{(n-1)n}{2} + 6n + 1$$
 
-\[
-= (n-1)n + 6n + 1 = n^2 - n + 6n + 1 = n^2 + 5n + 1
-\]
+$$= (n-1)n + 6n + 1 = n^2 - n + 6n + 1 = n^2 + 5n + 1$$
 
 ### Final Calculation:
 **Total statements (worst case) = Statements outside loops + Outer loop cost**
@@ -365,18 +349,18 @@ After r iterations: i = n/2^(r-1)
 **For the loop to stop:** n/2^r ≤ 1.0
 
 This gives us the inequalities:
-\[ n > 2^{r-1} \text{ and } n ≤ 2^r \]
+$$n > 2^{r-1} \text{ and } n \le 2^r$$
 
 Or more compactly:
-\[ 2^{r-1} < n ≤ 2^r \]
+$$2^{r-1} < n \le 2^r$$
 
 ### Step 3: Solve for r
 
 Taking the base-2 logarithm of all parts:
-\[ r-1 < \log_2 n ≤ r \]
+\[ r-1 < \log_2 n \leq r \]
 
 Since r must be an integer (number of iterations), the unique solution is:
-\[ r = ⌈\log_2 n⌉ \]
+\[ r = \lceil \log_2 n \rceil \]
 
 **Verification:**
 - **Lower bound:** ⌈log₂ n⌉ - 1 < log₂ n ✓ (ceiling function increases by less than 1)
