@@ -61,24 +61,22 @@ Determine the number of statements executed by the Java method in question 1 in 
 ---
 
 **Solution**  
-The best case occurs when the `if`-statement inside the loop is **never** executed—i.e., every character fails the lowercase test. Let \(n = s.length()\).
+The best case occurs when the `if`-statement inside the loop is **never** executed—i.e., every character fails the lowercase test. Let $n = s.length()$.
 
-1. **Initialization**:  
+1. **Initialization:**  
    - `StringBuilder t = new StringBuilder(s);` → 1 statement
 
-2. **For Loop**:  
+2. **For Loop:**  
    - Loop control (`i < s.length()`) and update (`i++`), plus the `if` condition check → 2 statements per iteration
-   - Number of iterations: \(n\)
+   - Number of iterations: $n$
    - One extra loop-condition check when the loop exits → +1 statement
-   - **Total loop cost**: \(2n + 1\)
+   - **Total loop cost:** $2n + 1$
 
-3. **Return**:  
+3. **Return:**  
    - `return t.toString();` → 1 statement
 
 **Total Statements**  
-\[ 1 + (2n + 1) + 1 = 2n + 3 \]
-
-**Final Answer**: 2n + 3
+$$1 + (2n + 1) + 1 = 2n + 3$$
 
 
 
@@ -175,7 +173,7 @@ Let h = matrix height, w = matrix width.
 
 ### Final Calculation:
 **Total statements = Statements outside loops + Outer loop cost**
-\[ 4 + (2hw + 2h + 1) = 2hw + 2h + 5 \]
+$$ 4 + (2hw + 2h + 1) = 2hw + 2h + 5 $$
 
 ---
 
@@ -269,7 +267,7 @@ $$= (n-1)n + 6n + 1 = n^2 - n + 6n + 1 = n^2 + 5n + 1$$
 
 ### Final Calculation:
 **Total statements (worst case) = Statements outside loops + Outer loop cost**
-\[ 3 + (n^2 + 5n + 1) = n^2 + 5n + 4 \]
+$$ 3 + (n^2 + 5n + 1) = n^2 + 5n + 4 $$
 
 **Summary:**
 - **Best case:** 2 statements
@@ -357,10 +355,10 @@ $$2^{r-1} < n \le 2^r$$
 ### Step 3: Solve for r
 
 Taking the base-2 logarithm of all parts:
-\[ r-1 < \log_2 n \leq r \]
+$$ r-1 < \log_2 n \leq r $$
 
 Since r must be an integer (number of iterations), the unique solution is:
-\[ r = \lceil \log_2 n \rceil \]
+$$ r = \lceil \log_2 n \rceil $$
 
 **Verification:**
 - **Lower bound:** ⌈log₂ n⌉ - 1 < log₂ n ✓ (ceiling function increases by less than 1)
@@ -554,7 +552,7 @@ public String treeConcat(Node root) {
 **Loop control statements:** 1 statement × (n-1) executions = (n-1)
 
 **Total statements:**
-\[ 3(n-1) + (n-1) = 3n - 3 + n - 1 = 4n - 4 \]
+$$ 3(n-1) + (n-1) = 3n - 3 + n - 1 = 4n - 4 $$
 
 **Answer: 4n - 4 statements**
 
