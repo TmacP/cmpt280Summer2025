@@ -193,7 +193,6 @@ public void lower_triangle_row_sum(Float[][] s) {
  Number of statements in one iteration of outer loop: $3 +$ cost of inner loop $= 2i + 6$
  
  This is a dependent-quadratic loop since the number of iterations of the inner loop depends on the value of $i$ in the outer loop.
-q7 comment code
  
  Outer loop iterates for values of $i$ between $0$ and $n-1$. Thus the total cost of the outer loop is (the extra $+1$ is for when the outer loop condition is false):
  
