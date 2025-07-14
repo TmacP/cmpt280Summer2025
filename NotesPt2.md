@@ -217,7 +217,7 @@ q7 comment code
 # Question 8
  Express the overall time complexity of the method in question 7 using the appropriate notation(s) (big-O, big-Θ, big-Ω).
  
- The method is $O(n^2)$ (worst case) and $\Omega(1)$ (best case). Since the best and worst cases are not the same, no big-$\Theta$ statement can be made.
+ The method is $O(n^2)$ (worst case) and $\Omega(1)$ (best case). Since the best and worst cases are not the same, no big- $\Theta$ statement can be made.
 
 ---
 
