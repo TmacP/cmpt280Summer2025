@@ -130,12 +130,9 @@ worst case and best case are the same since there is no branching and we always 
  Number of times inner loop executes: $w$  
  Total for inner loop (including $+1$ when loop condition is false): $2w + 1$  
  
- Number of statements in one iteration of outer loop: $1$ (outer loop test) $+$ cost of inner loop $= 2w + 2$  
+ Number of statements in one iteration of outer loop: $1$ + cost of inner loop $= 2w + 2$  
  Number of times outer loop executes: $h$  
- Total for outer loop (including $+1$ when outer loop condition is false):  
- $h(2w + 2) + 1 = 2hw + 2h + 1$
+ Total for outer loop (including $+1$ when loop condition is false): $h(2w + 2) + 1 = 2hw + 2h + 1$
  
- Total cost of method $= 3$ (setup) $+$ cost of outer loop $+ 1$ (return)  
- $= 3 + 2hw + 2h + 1 + 1$  
- $= 2hw + 2h + 5$
+ Total cost of method $= 4$ + cost of outer loop $= 2hw + 2h + 5$
  
