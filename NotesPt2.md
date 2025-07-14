@@ -8,8 +8,7 @@
 | **Big-Omega (Ω):** | A lower bound on the growth rate. It describes the *best-case* scenario |
 | **Big-Theta (Θ):** | the function grows at the same rate in both the best and worst cases |
 
-
-
+---
 
 ## Question 1
 
