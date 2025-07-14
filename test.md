@@ -1,7 +1,7 @@
 ---
 
 marp: true
-paginate: true 
+paginate: false 
 
 ---
 # CMPT 280 Tutorial: Timing Analysis
