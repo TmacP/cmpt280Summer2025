@@ -164,9 +164,9 @@ worst case and best case are the same since there is no branching and we always 
      }
      System.out.println("Lower sum: " + sum);
  }
-```
+ ```
  
-Let $n = s.length$, $m = s[i].length$.
+ Let $n = s.length$, $m = s[i].length$.
  
  The best case is when the array $s$ is not square, which results in the exception. Best case executes exactly 2 statements.
  
@@ -176,20 +176,23 @@ Let $n = s.length$, $m = s[i].length$.
  Number of iterations of the inner loop: $i + 1$  
  Total for inner loop: $2(i + 1) + 1 = 2i + 3$
  
- Number of statements in one iteration of outer loop: 3 $+$ cost of inner loop $= 2i + 6$
+ Number of statements in one iteration of outer loop: $3 +$ cost of inner loop $= 2i + 6$
  
  This is a dependent-quadratic loop since the number of iterations of the inner loop depends on the value of $i$ in the outer loop.
  
  Outer loop iterates for values of $i$ between $0$ and $n-1$. Thus the total cost of the outer loop is (the extra $+1$ is for when the outer loop condition is false):
  
  $$
- \sum_{i=0}^{n-1} (2i + 6) + 1
- = \sum_{i=0}^{n-1} (2i) + \sum_{i=0}^{n-1} 6 + 1 \\
- = \sum_{i=0}^{n-1} i + 6n + 1 \\
- = 2(n-1)(n)/2 + 6n + 1 \\
- = (n-1)(n) + 6n + 1 \\
- = n^2 - n + 6n + 1 \\
- = n^2 + 5n + 1
+ \begin{align*}
+ &\sum_{i=0}^{n-1} (2i + 6) + 1 \\
+ &= \sum_{i=0}^{n-1} (2i) + \sum_{i=0}^{n-1} 6 + 1 \\
+ &= \sum_{i=0}^{n-1} 2i + 6n + 1 \\
+ &= 2\sum_{i=0}^{n-1} i + 6n + 1 \\
+ &= 2\left(\frac{(n-1)n}{2}\right) + 6n + 1 \\
+ &= (n-1)n + 6n + 1 \\
+ &= n^2 - n + 6n + 1 \\
+ &= n^2 + 5n + 1
+ \end{align*}
  $$
  
  Total for the whole method in the worst case is: cost of outer loop $+ 3 = n^2 + 5n + 4$  
