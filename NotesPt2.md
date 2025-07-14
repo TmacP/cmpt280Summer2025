@@ -186,7 +186,6 @@ worst case and best case are the same since there is no branching and we always 
  \begin{align*}
  &\sum_{i=0}^{n-1} (2i + 6) + 1 \\
  &= \sum_{i=0}^{n-1} (2i) + \sum_{i=0}^{n-1} 6 + 1 \\
- &= \sum_{i=0}^{n-1} 2i + 6n + 1 \\
  &= 2\sum_{i=0}^{n-1} i + 6n + 1 \\
  &= 2\left(\frac{(n-1)n}{2}\right) + 6n + 1 \\
  &= (n-1)n + 6n + 1 \\
