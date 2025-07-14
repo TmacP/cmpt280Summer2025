@@ -72,3 +72,10 @@ Total number of statements is the cost of the loop plus statements outside the l
 
 
 $$1 + 2n + 1 + 1 = 2n + 2$$
+# Question 3
+ Express the worst and best case time complexities of the method in question 1 in Big-O and Big-Ω notation, respectively. If possible, express the overall time complexity of the method using Big-Θ notation.
+ 
+ worst case: O(n)  
+ best case: Ω(n)  
+ overall: since the best and worst case growth functions are the same, the method is Θ(n)
+ 
