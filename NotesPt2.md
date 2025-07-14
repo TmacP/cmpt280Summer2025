@@ -286,7 +286,7 @@ q7 comment code
 # Question 10
 Determine the time complexity of the following pseudocode snippet using the active operation approach.
 
-```
+```java
 Let A be a 2D array of size n by n.
 Let T be an AVL tree with m items.
 
@@ -303,18 +303,12 @@ In the worst case, the active operation (insert) has a cost of $O(\log m)$ where
 
 The number of times the active operation is executed is $n^2$, thus the total cost of the pseudocode is $n^2 \cdot O(\log m)$ which is $O(n^2 \log m)$.
 
-Therefore, the insert operation is chosen as the active operation.
-
-In the worst case, the active operation (insert) has a cost of $O(\log m)$ where $m$ is the number of items in the AVL tree.
-
-The number of times the active operation is executed is $n^2$, thus the total cost of the pseudocode is $n^2 \cdot O(\log m)$ which is $O(n^2 \log m)$.
-
 ---
 
 # Question 11
  Determine the time complexity of the following pseudocode snippet using the active operation approach (careful! This one is tricky!).
  
- ```
+ ```java
  Let G be a weighted graph that is implemented with an adjacency list
      with |V| nodes and |E| edges.
  Let H be a heap of edges ordered by edge weight (initially empty).
@@ -339,3 +333,47 @@ The number of times the active operation is executed is $n^2$, thus the total co
  Using line 7 as the active operation, the total cost is $|V| \cdot O(\log |V|)$. This is cheaper than line 6, thus line 6 is the active operation, and the algorithm is $O(|V|^2)$.
  
 ---
+
+# Question 12
+ Determine exact number of statements executed by the following pseudocode function in the worst case (this one is a bit tricky too!):
+ 
+ ```java
+ Algorithm treeconcat(root)
+ 
+ Let root be the root node of an m-ary tree containing n nodes where each
+     node contains a string and each non-leaf node has exactly
+     m children.
+ Let s be the empty string.
+ 
+ s <- root.string()                 // assign the string stored in root to s
+ 
+ if root is not a leaf node:        // Assume this line is O(1)
+     for each child q of root:
+         s <- s + treeconcat(q)     // string concatenation of s with the
+                                    // return value, assume the concatenation
+                                    // operation is O(1).
+ 
+ return s
+ ```
+ 
+ The worse case and best case are the same here. We recurse through every node of the tree. The leaf nodes are the base case of the recursion.
+ 
+ The number of statements executed after the recursive call is 1.
+ 
+ The number of statements executed before the recursive call before the for-loop is 2 (we don’t count the for-loop on line 11 for now).
+ 
+ Regardless of the structure of the tree, a recursive call on line 12 will happen once for each node in the tree except the root. Thus there are $n - 1$ recursive calls.
+ 
+ Moreover, and again regardless of the structure of the tree, the for loop will execute once for each node other than the root, thus the for loop executes $n - 1$ times over all recursive calls.
+ 
+ So to find the total lines executed, take the sum of the lines executed before and after the recursive call (not counting line 11) multiply that by the number of recursive calls, then add to the result the number of times line 11 executes.
+ 
+ Therefore the total number of lines executed is:
+ 
+ $$
+ \begin{align*}
+ 3(n-1) + (n-1) & = 3n - 3 + n - 1 \\
+ & = 4n - 4
+ \end{align*}
+ $$
+ 
