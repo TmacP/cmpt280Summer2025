@@ -245,7 +245,9 @@ q7 comment code
  This implies that $n/2^{r-1} > 1.0$ and $n/2^r \leq 1$. Rearranging these inequalities yields the following two inequalities:
  
  $$
- n > 2^{r-1} \\
+ n > 2^{r-1}
+ $$
+ $$
  n \leq 2^r
  $$
  
@@ -275,5 +277,5 @@ q7 comment code
  4\lceil \log n \rceil + 3
  $$
  
- This function is clearly $O(\log n)$, so the code snippet is $O(\log n)$ (and also $\Omega(\log n)$ and therefore $$Theta(log n)$$ ).
+ This function is clearly $O(\log n)$, so the code snippet is $O(\log n)$ (and also $\Omega(\log n)$ and therefore $\Theta(\log n)$).
  
