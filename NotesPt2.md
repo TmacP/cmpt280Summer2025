@@ -212,3 +212,68 @@ q7 comment code
  Total for the whole method in the worst case is: cost of outer loop $+ 3 = n^2 + 5n + 4$  
  (Line 3 is not executed)
  
+---
+
+# Question 8
+ Express the overall time complexity of the method in question 7 using the appropriate notation(s) (big-O, big-Θ, big-Ω).
+ 
+ The method is $O(n^2)$ (worst case) and $\Omega(1)$ (best case). Since the best and worst cases are not the same, no big-$\Theta$ statement can be made.
+
+---
+
+# Question 9
+ Prove that the following code is $O(\log n)$ by calculating the exact number of statements executed and then expressing that function in big-O notation. Assume $n$ is an `float` variable with a large positive value.
+ 
+ ```java
+ float i = n;                   // +1 (initialization)
+ while(i > 1.0) {               // loop test counted per iteration (+1 per loop)
+     float jump_dist = i - i / 2.0;           // +1 (per iteration)
+     System.out.println("Jump " + jump_dist + " light years..."); // +1 (per iteration)
+     i = i / 2.0;               // +1 (per iteration)
+     // total: 4 statements per loop iteration (including test)
+ }
+ // After the loop: one extra test when i <= 1.0 (+1)
+ System.out.println("You're now within 1 light year of your destination."); // +1
+ ```
+ 
+ Number of statements per loop iteration: 4
+ 
+ Number of times the loop executes:
+ 
+ Suppose the loop condition is true for $r$ iterations. On the first iteration, $i = n$, on the second iteration $i = n/2$. In the third loop iteration, $i = n/4$. On the fourth iteration $i = n/8$. On the $r$-th iteration, $i = n/2^{r-1}$.
+ 
+ This implies that $n/2^{r-1} > 1.0$ and $n/2^r \leq 1$. Rearranging these inequalities yields the following two inequalities:
+ 
+ $$
+ n > 2^{r-1} \\
+ n \leq 2^r
+ $$
+ 
+ or, more compactly,
+ 
+ $$
+ 2^{r-1} < n \leq 2^r
+ $$
+ 
+ Taking the base-2 logarithm of all terms gives us:
+ 
+ $$
+ r - 1 < \log n \leq r
+ $$
+ 
+ Since $r$ is the number of iterations, it must be an integer. The only integer that solves these inequalities is $r = \lceil \log n \rceil$. $\lceil \log n \rceil - 1$ is definitely less than $\log n$ (the increase from the ceiling operator is always smaller than 1) so the $<$ is satisfied. $r = \lceil \log n \rceil$ definitely at least as large as $\log n$ since $\log n$ is being rounded up so the $\leq$ is satisfied.
+ 
+ Any smaller integer $r$ will not satisfy the $\leq$ because $r = \lceil \log n \rceil - 1$ is not greater than or equal to $\log n$. Any larger $r$ will not satisfy the $<$ because $r = \lceil \log n \rceil + 1$ is not smaller than $\log n$. Thus $r = \lceil \log n \rceil$ is the only integer value of $r$ that satisfies both inequalities.
+ 
+ Hence the loop runs $\lceil \log n \rceil$ times.
+ 
+ The total cost of the loop is therefore $4\lceil \log n \rceil + 1$.
+ 
+ The total cost of the entire code snippet is the cost of the loop, plus the cost of the statements outside the loop which is:
+ 
+ $$
+ 4\lceil \log n \rceil + 3
+ $$
+ 
+ This function is clearly $O(\log n)$, so the code snippet is $O(\log n)$ (and also $\Omega(\log n)$ and therefore $\Theta(\log n)$).
+ 
