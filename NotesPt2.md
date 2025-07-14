@@ -18,30 +18,29 @@ Use the statement counting approach to determine the number of statements execut
 // Convert all lowercase characters in string s to upper case.
 public String toUpperCase(String s) {
 
-    StringBuilder t = new StringBuilder(s);
+    StringBuilder t = new StringBuilder(s); // +1 (statement outside the loop)
 
-    for (int i = 0; i < s.length(); i++) {
-        if (Character.isLowerCase(s.charAt(i))) {
-            t.setCharAt(i, (char)(s.charAt(i) - 'a' + 'A'));
+    for (int i = 0; i < s.length(); i++) { // +1 (loop init, counted once)
+        // Loop test and increment counted in the loop body below
+        if (Character.isLowerCase(s.charAt(i))) { // +1 per iteration (if check)
+            t.setCharAt(i, (char)(s.charAt(i) - 'a' + 'A')); // +1 per iteration (setCharAt)
         }
+        // Loop increment: +1 per iteration (i++)
+        // Loop test: +1 per iteration (i < s.length())
     }
 
-    return t.toString();
+    return t.toString(); // +1 (statement outside the loop)
 }
 ```
-
----
-
-**Solution:** Worst case is when the if-statement is always true. Let \( n = s.length() \). Beginning with the inner loop:
+Worst case is when the if-statement is always true. Let $$n = s.length()$$. Beginning with the inner loop:
 
 - Number of statements in one loop iteration: 3  
-- Number of loop iterations: \( n \)  
-- Total for the loop (including +1 when loop condition is false): \( 3n + 1 \)
+- Number of loop iterations: $$n$$
+- Total for the loop (including +1 when loop condition is false): $$3n + 1$$
 
 Total number of statements is the cost of the loop plus statements outside the loop:
 
-\[
-1 + 3n + 1 + 1 = 3n + 3
-\]
+
+$$1 + 3n + 1 + 1 = 3n + 3$$
 
 
