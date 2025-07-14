@@ -15,22 +15,21 @@
 Use the statement counting approach to determine the number of statements executed by the following Java method in the **worst case** (use the statement-counting approach). Assume that all methods and constructors called by the given method are Θ(1).
 
 ```java
-// Convert all lowercase characters in string s to upper case.
-public String toUpperCase(String s) {
-
-    StringBuilder t = new StringBuilder(s); // +1 (statement outside the loop)
-
-    for (int i = 0; i < s.length(); i++) { // +1 (loop init, counted once)
-        // Loop test and increment counted in the loop body below
-        if (Character.isLowerCase(s.charAt(i))) { // +1 per iteration (if check)
-            t.setCharAt(i, (char)(s.charAt(i) - 'a' + 'A')); // +1 per iteration (setCharAt)
-        }
-        // Loop increment: +1 per iteration (i++)
-        // Loop test: +1 per iteration (i < s.length())
-    }
-
-    return t.toString(); // +1 (statement outside the loop)
-}
+StringBuilder t = new StringBuilder(s); // +1 (outside loop)
+ 
+ for (int i = 0; i < s.length(); i++) {  // Loop structure:
+     // For each iteration:
+     // 1. Loop test:   +1
+     // 2. If check:    +1
+     // 3. Body:        +1 (worst case, always executes)
+     if (Character.isLowerCase(s.charAt(i))) {
+         t.setCharAt(i, (char)(s.charAt(i) - 'a' + 'A'));
+     }
+ }
+ // After the loop: one extra test when i == s.length(): +1
+ 
+ return t.toString(); // +1 (outside loop)
+ 
 ```
 Worst case is when the if-statement is always true. Let $$n = s.length()$$. Beginning with the inner loop:
 
