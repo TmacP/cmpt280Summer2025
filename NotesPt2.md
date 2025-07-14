@@ -136,3 +136,62 @@ worst case and best case are the same since there is no branching and we always 
  
  Total cost of method $= 4$ + cost of outer loop $= 2hw + 2h + 5$
  
+
+---
+
+# Question 6
+ Express the overall time complexity of the method in question 7 using the appropriate notation(s) (big-O, big-Θ, big-Ω).
+ 
+ Θ(hw)
+ 
+---
+
+# Question 7
+ Determine the exact number of statements executed by the following method in the best- and worst-cases.
+ 
+ ```java
+ public void lower_triangle_row_sum(Float[][] s) {
+     if ( s.length != s[0].length )
+         throw new RuntimeException("Array is not square!");
+ 
+     float sum = 0;
+     for(int i = 0; i < s.length; i++) {
+         float rowsum = 0.0;
+         for(int j = i; j >= 0; j--) {
+             rowsum += s[i][j];
+         }
+         System.out.println("Sum of row " + i + ": " + rowsum);
+     }
+     System.out.println("Lower sum: " + sum);
+ }
+```
+ 
+Let $n = s.length$, $m = s[i].length$.
+ 
+ The best case is when the array $s$ is not square, which results in the exception. Best case executes exactly 2 statements.
+ 
+ The worst case is when the array is square. We begin, as usual, with the inner loop:
+ 
+ Number of statements in one iteration of inner loop: 2  
+ Number of iterations of the inner loop: $i + 1$  
+ Total for inner loop: $2(i + 1) + 1 = 2i + 3$
+ 
+ Number of statements in one iteration of outer loop: 3 $+$ cost of inner loop $= 2i + 6$
+ 
+ This is a dependent-quadratic loop since the number of iterations of the inner loop depends on the value of $i$ in the outer loop.
+ 
+ Outer loop iterates for values of $i$ between $0$ and $n-1$. Thus the total cost of the outer loop is (the extra $+1$ is for when the outer loop condition is false):
+ 
+ $$
+ \sum_{i=0}^{n-1} (2i + 6) + 1
+ = \sum_{i=0}^{n-1} (2i) + \sum_{i=0}^{n-1} 6 + 1 \\
+ = \sum_{i=0}^{n-1} i + 6n + 1 \\
+ = 2(n-1)(n)/2 + 6n + 1 \\
+ = (n-1)(n) + 6n + 1 \\
+ = n^2 - n + 6n + 1 \\
+ = n^2 + 5n + 1
+ $$
+ 
+ Total for the whole method in the worst case is: cost of outer loop $+ 3 = n^2 + 5n + 4$  
+ (Line 3 is not executed)
+ 
