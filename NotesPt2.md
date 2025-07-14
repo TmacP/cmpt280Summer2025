@@ -42,4 +42,33 @@ Total number of statements is the cost of the loop plus statements outside the l
 
 $$1 + 3n + 1 + 1 = 3n + 3$$
 
+# Question 2
+Determine the number of statements executed by the Java method in question 1 in the **best case**.
+ 
+```java
+StringBuilder t = new StringBuilder(s); // +1 (outside loop)
+ 
+ for (int i = 0; i < s.length(); i++) {  // Loop structure:
+     // For each iteration:
+     // 1. Loop test:   +1
+     // 2. If check:    +1
+     // 3. Body:        0 (best case, never executes)
+     if (Character.isLowerCase(s.charAt(i))) {
+         t.setCharAt(i, (char)(s.charAt(i) - 'a' + 'A'));
+     }
+ }
+ // After the loop: one extra test when i == s.length(): +1
+ 
+ return t.toString(); // +1 (outside loop)
+ 
+```
+best case is when the if-statement is always false. Let $$n = s.length()$$. Beginning with the inner loop:
 
+- Number of statements in one loop iteration: 2  
+- Number of loop iterations: $$n$$
+- Total for the loop (including +1 when loop condition is false): $$2n + 1$$
+
+Total number of statements is the cost of the loop plus statements outside the loop:
+
+
+$$1 + 2n + 1 + 1 = 2n + 2$$
