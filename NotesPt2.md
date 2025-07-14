@@ -280,6 +280,28 @@ q7 comment code
  This function is clearly $O(\log n)$, so the code snippet is $O(\log n)$ (and also $\Omega(\log n)$ and therefore $\Theta(\log n)$ ).
  
 
+
+---
+
+# Question 10
+ Determine the time complexity of the following pseudocode snippet using the active operation approach.
+ 
+ ```
+ Let A be a 2D array of size n by n.
+ Let T be an AVL tree with m items.
+ 
+ for each row r of A:
+     for each column c of A:
+         A[r][c] = A[r-1][c] + A[r][c-1] - A[r-1][c-1]
+         T.insert(A[r][c])
+ ```
+ 
+ The active operation could be line 5, 6 or 7 since line 5 gets executed more than any other, and lines 6 and 7 get executed one fewer time per execution of the inner loop. But since Line 7 is non-constant time, we must select this as the active operation.
+ 
+ In the worst case, the active operation has a cost of $O(\log m)$ where $m$ is the number of items in the AVL tree.
+ 
+ The number of times the active operation is executed is $n^2$, thus the total cost of the pseudocode is $n^2 \cdot O(\log m)$ which is $O(n^2 \log m)$.
+ 
 ---
 
 # Question 11
