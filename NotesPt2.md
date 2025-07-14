@@ -275,5 +275,5 @@ q7 comment code
  4\lceil \log n \rceil + 3
  $$
  
- This function is clearly $O(\log n)$, so the code snippet is $O(\log n)$ (and also $\Omega(\log n)$ and therefore $\Theta(\log n)$).
+ This function is clearly $O(\log n)$, so the code snippet is $O(\log n)$ (and also $\Omega(\log n)$ and therefore $$Theta(log n)$$ ).
  
