@@ -279,3 +279,34 @@ q7 comment code
  
  This function is clearly $O(\log n)$, so the code snippet is $O(\log n)$ (and also $\Omega(\log n)$ and therefore $\Theta(\log n)$ ).
  
+
+---
+
+# Question 11
+ Determine the time complexity of the following pseudocode snippet using the active operation approach (careful! This one is tricky!).
+ 
+ ```
+ Let G be a weighted graph that is implemented with an adjacency list
+     with |V| nodes and |E| edges.
+ Let H be a heap of edges ordered by edge weight (initially empty).
+ 
+ for each vertex v in G:
+     if there is an edge from vertex v to vertex 0:
+         insert the edge (v,0) to H
+ ```
+ 
+ There are two possible active operations: Line 6 and line 7 since both execute the same number of times in the worst case and both have non-constant cost. Since it isn’t immediately obvious which should be the active operation, we perform the analysis for both.
+ 
+ The cost of line 6 is $O(|V|)$ since in the worst case of a complete graph it takes $O(|V|)$ time to search the adjacency list for an edge to vertex 0.
+ 
+ The cost of line 7 is $O(\log |V|)$ since in the worst case there are $|V| - 1$ edges in the heap (when the last vertex v is processed).
+ 
+ Line 6 executes exactly $|V|$ times, once for each vertex $v$.
+ 
+ Line 7 executes exactly $|V|$ times in the worst case, once for each vertex $v$.
+ 
+ Using line 6 as the active operation, the total cost is $|V| \cdot O(|V|)$ which is $O(|V|^2)$.
+ 
+ Using line 7 as the active operation, the total cost is $|V| \cdot O(\log |V|)$. This is cheaper than line 6, thus line 6 is the active operation, and the algorithm is $O(|V|^2)$.
+ 
+---
