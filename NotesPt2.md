@@ -121,6 +121,7 @@ $$1 + 2n + 1 + 1 = 2n + 2$$
  
      return T;                       // +1
  }
+```
  
 
 worst case and best case are the same since there is no branching and we always iterate over the entire matrix.
