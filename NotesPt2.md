@@ -150,20 +150,34 @@ worst case and best case are the same since there is no branching and we always 
  Determine the exact number of statements executed by the following method in the best- and worst-cases.
  
  ```java
- public void lower_triangle_row_sum(Float[][] s) {
+public void lower_triangle_row_sum(Float[][] s) {
+     // +1: if condition (best/worst case, always executed)
      if ( s.length != s[0].length )
+         // +1: throw statement (best case only, stops execution)
          throw new RuntimeException("Array is not square!");
  
+     // +1: float sum = 0;
      float sum = 0;
-     for(int i = 0; i < s.length; i++) {
+ 
+     // Outer loop (i from 0 to n-1):
+     for(int i = 0; i < s.length; i++) { // 
+         // +1: float rowsum = 0.0;
          float rowsum = 0.0;
+ 
+         // Inner loop (j from i down to 0):
          for(int j = i; j >= 0; j--) {
+             // +1: rowsum += s[i][j]; (per iteration)
              rowsum += s[i][j];
+             // +1: inner loop test (j >= 0) (per iteration + 1 for final test)
          }
+         // +1: System.out.println(...) (per i)
          System.out.println("Sum of row " + i + ": " + rowsum);
+         // +1: outer loop test (i < s.length) (per iteration + 1 for final test)
      }
+     // +1: System.out.println("Lower sum: " + sum);
      System.out.println("Lower sum: " + sum);
  }
+ 
  ```
  
  Let $n = s.length$, $m = s[i].length$.
@@ -179,6 +193,7 @@ worst case and best case are the same since there is no branching and we always 
  Number of statements in one iteration of outer loop: $3 +$ cost of inner loop $= 2i + 6$
  
  This is a dependent-quadratic loop since the number of iterations of the inner loop depends on the value of $i$ in the outer loop.
+q7 comment code
  
  Outer loop iterates for values of $i$ between $0$ and $n-1$. Thus the total cost of the outer loop is (the extra $+1$ is for when the outer loop condition is false):
  
