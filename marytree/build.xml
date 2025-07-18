@@ -26,13 +26,5 @@
         </java>
     </target>
 
-    <target name="run-BilinkedList" depends="compile">
-        <java classname="lib280.list.BilinkedList280" fork="true">
-            <classpath>
-                <pathelement path="${build.dir}"/>
-            </classpath>
-        </java>
-    </target>
-
 
 </project>
