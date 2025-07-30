@@ -9,43 +9,60 @@
 - **Probe increment**: \$p(j)\$
 - **Location of j-th alternative array offset**: \$(h(k) + p(j)) \mod N\$
 
-#### Linear Probing
+---
+
+### Linear Probing
 
 - **Hash function**: `item value mod 10`
 - **Probe increment**: \$p(j) = j\$
 
 **Insertions**: 59, 42, 92, 102, 29, 39, 62
 
+#### Step-by-step Insertions:
+
+| Item | Hash         | Initial Index | Steps Taken                     | Final Index |
+| ---- | ------------ | ------------- | ------------------------------- | ----------- |
+| 59   | 59 % 10 = 9  | 9             | 9 (empty)                       | 9           |
+| 42   | 42 % 10 = 2  | 2             | 2 (empty)                       | 2           |
+| 92   | 92 % 10 = 2  | 2             | 2 (taken), 3 (empty)            | 3           |
+| 102  | 102 % 10 = 2 | 2             | 2 (taken), 3 (taken), 4 (empty) | 4           |
+| 29   | 29 % 10 = 9  | 9             | 9 (taken), 0 (empty)            | 0           |
+| 39   | 39 % 10 = 9  | 9             | 9 (taken), 0 (taken), 1 (empty) | 1           |
+| 62   | 62 % 10 = 2  | 2             | 2,3,4 taken, 5 (empty)          | 5           |
+
+**Final Array:**
+
 ```
-Index:  0  1  2  3  4  5  6  7  8  9
-Value: 42 92 62  -  -  -  - 29 59 39
-(102 collides with 2 -> next free slot at 3)
+Index:  0   1   2   3   4   5   6   7   8   9
+Value: 29  39  42  92 102  62   -   -   -  59
 ```
 
-#### Quadratic Probing
+---
+
+### Quadratic Probing
 
 - **Hash function**: `item value mod 10`
 - **Probe increment**: \$p(j) = (-1)^{i-1}\left(\frac{i+1}{2}\right)^2\$
 
 **Insertions**: 59, 42, 92, 102, 29, 39, 62
 
+#### Step-by-step Insertions with Calculations:
+
+| Item | Hash | Initial Index | Calculations for Probes                                                                                        | Steps Taken                                | Final Index |
+| ---- | ---- | ------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------ | ----------- |
+| 59   | 9    | 9             | \$9\$                                                                                                          | 9 (empty)                                  | 9           |
+| 42   | 2    | 2             | \$2\$                                                                                                          | 2 (empty)                                  | 2           |
+| 92   | 2    | 2             | \$2\$, \$2 + (-1)^0(\frac{2}{2})^2 = 3\$                                                                       | 2 (taken), 3 (empty)                       | 3           |
+| 102  | 2    | 2             | \$2\$, \$2 + (-1)^0(\frac{2}{2})^2 = 3\$, \$2 + (-1)^1(\frac{3}{2})^2 = 1\$                                    | 2 (taken), 3 (taken), 1 (empty)            | 1           |
+| 29   | 9    | 9             | \$9\$, \$9 + (-1)^0(\frac{2}{2})^2 = 0\$                                                                       | 9 (taken), 0 (empty)                       | 0           |
+| 39   | 9    | 9             | \$9\$, \$9 + (-1)^0(\frac{2}{2})^2 = 0\$, \$9 + (-1)^1(\frac{3}{2})^2 = 8\$                                    | 9 (taken), 0 (taken), 8 (empty)            | 8           |
+| 62   | 2    | 2             | \$2\$, \$2 + (-1)^0(\frac{2}{2})^2 = 3\$, \$2 + (-1)^1(\frac{3}{2})^2 = 1\$, \$2 + (-1)^2(\frac{4}{2})^2 = 6\$ | 2 (taken), 3 (taken), 1 (taken), 6 (empty) | 6           |
+
+**Final Array:**
+
 ```
-Index:  0  1  2  3  4  5  6  7  8  9
-Value:  -  - 62 92  -  - 42 29 59 39
-(102 collides at 2 -> probes to 3, 1, then placed at 3)
-```
-
-#### Double Hashing
-
-- **Hash function**: `item value mod 10`
-- **Probe increment**: \$p(j) = ((k \mod 7) + 1) \times j\$
-
-**Insertions**: 59, 42, 92, 102, 29, 39, 62
-
-```
-Index:  0  1  2  3  4  5  6  7  8  9
-Value:  -  - 92 62  -  - 42 29 59 39
-(102 collides at 2 -> probes by increment 5, then placed at 7)
+Index:  0   1   2   3   4   5   6   7   8   9
+Value: 29 102  42  92   -   -  62   -  39  59
 ```
 
 ---
@@ -67,7 +84,7 @@ Buckets:    Keys/Values
 8           x Jake
 9           x Prismo
 
-Keys map to buckets; buckets store linked lists of items.
+(Keys map to buckets; buckets store linked lists of items.)
 ```
 
 #### Implementation in lib280
@@ -80,6 +97,8 @@ public class KeyedChainedHashTable280<K extends Comparable<? super K>, I extends
     implements KeyedDict280<K, I>
 ```
 
+- `hashPos(K key)` calculates positions.
+- Collision handled by chaining with linked lists.
 - Two type parameters: `K` (key type) and `I` (item type).
 - Extends abstract class `HashTable280`.
 - Implements `KeyedDict280<K, I>`.
@@ -118,9 +137,7 @@ protected LinkedList280<I>[] hashArray;
 
 ---
 
-### Relevant Java Code Snippet (from provided files)
-
-#### Example implementation of hash function:
+#### Hash function:
 
 ```java
 protected int hashPos(K key) {
@@ -141,7 +158,7 @@ public void insert(I item) {
 }
 ```
 
-#### Obtaining an item by key:
+#### Obtaining an item:
 
 ```java
 public I obtain(K key) throws ItemNotFound280Exception {
@@ -161,7 +178,7 @@ public I obtain(K key) throws ItemNotFound280Exception {
 
 ---
 
-### Other Features
+### Additional Features
 
-- Dynamic resizing (automatic increase based on load factor).
-- Internal cursor for iterating (`goFirst()`, `itemExists()`, `goForth()`, etc.).
+- Dynamic resizing based on load factor.
+- Internal cursor for iteration (`goFirst()`, `itemExists()`, etc.).
